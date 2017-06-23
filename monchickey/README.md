@@ -1,5 +1,8 @@
-# Python类库 - monchickey 2.1.7 20170529
+# Python类库 - monchickey 2.2.0 20170623
 ## 适用版本 python 2.7.x
+
+## 2.2.0 20170623
+    - 添加setup.py安装脚本 符合python模块安装标准
 
 ## 2.1.7 20170529
     - 添加计算文件md5,sha1,crc32值的方法
