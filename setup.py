@@ -14,7 +14,7 @@ Required packages:
 
 setup(
     name="monchickey",
-    version='2.2.0',
+    version='3.0.0',
     description="Commonly used tool library",
     long_description=longdesc,
     author="zengzhiying",
@@ -26,12 +26,12 @@ setup(
         'monchickey.database',
         'monchickey.fileprocess',
         'monchickey.networkcommunication',
-        'monchickey.ostools'
+        'monchickey.osutils'
         ],
     license='LGPL',
     platforms='Posix; MacOS X; Windows',
     install_requires=[
         'MySQL-python>=1.2.3',
-        'pyyaml>=3.12',
+        'pyyaml>=3.11',
     ],
 )

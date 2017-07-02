@@ -1,5 +1,8 @@
-# Python类库 - monchickey 2.2.0 20170623
+# Python类库 - monchickey 3.0.0 20170702
 ## 适用版本 python 2.7.x
+
+## 3.0.0 20170702
+    - 优化模块结构符合google python代码规范 更新daemon守护进程类为最新版本
 
 ## 2.2.0 20170623
     - 添加setup.py安装脚本 符合python模块安装标准
