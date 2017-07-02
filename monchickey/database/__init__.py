@@ -1,2 +1,2 @@
 # coding=utf-8
-from MySQLUtils import *
+from .mysql_utils import *

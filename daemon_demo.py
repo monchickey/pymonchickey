@@ -6,7 +6,6 @@ import sys
 q = 5
 class DaemonTest:
     def test(self):
-        # 使用global全局变量时，一定在运行类中，不是类库中
         print q
         time.sleep(q)
         # 以下编写其他更多业务逻辑
@@ -15,7 +14,10 @@ class DaemonTest:
 
 class RunDaemon(Daemon):
     def __init__(self):
-        Daemon.__init__(self, pidfile='/usr/log/abc.log')
+        # 推荐写法 stdout默认为/dev/null
+        super(RunDaemon, self).__init__(pidfile='/var/run/abc.pid', stdout='/var/log/test.log')
+        # 旧的写法
+        # Daemon.__init__(self, pidfile='/usr/log/abc.log')
 
     def run(self):
         # 执行业务类的方法

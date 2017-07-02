@@ -1,3 +1,3 @@
 # coding=utf-8
-from FileIOUtils import *
-from ConfigUtils import *
+from fileio_utils import *
+from config_utils import *

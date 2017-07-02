@@ -1,4 +1,4 @@
 # coding=utf-8
-from NetworkTools import *
-from WebGrab import *
-from FTPTools import *
+from .network_utils import *
+from web_grab import *
+from .ftp_utils import *

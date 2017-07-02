@@ -1,7 +1,7 @@
 # coding=utf-8
 import socket
 
-class NetworkTools(object):
+class NetworkUtils(object):
     """网络工具类"""
 
     # 获取指定远程主机名对应的ip地址,不加http:// 比如:help.baidu.com

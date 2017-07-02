@@ -1,7 +1,7 @@
 # coding=utf-8
 from ftplib import FTP
 
-class FTPTools(object):
+class FTPUtils(object):
     """ftp文件工具类"""
 
     # ftp连接操作
