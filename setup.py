@@ -8,13 +8,13 @@ Network communication and simple system command calls,
 The most commonly used for data calculation, filtering and conversion.
 
 Required packages:
-    MySQL-python
+    PyMySQL
     PyYAML
 '''
 
 setup(
     name="monchickey",
-    version='3.0.0',
+    version='3.0.1',
     description="Commonly used tool library",
     long_description=longdesc,
     author="zengzhiying",
@@ -31,7 +31,7 @@ setup(
     license='LGPL',
     platforms='Posix; MacOS X; Windows',
     install_requires=[
-        'MySQL-python>=1.2.3',
+        'PyMySQL>=0.7.11',
         'pyyaml>=3.11',
     ],
 )

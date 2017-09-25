@@ -1,5 +1,9 @@
-# Python类库 - monchickey 3.0.0 20170702
+# Python类库 - monchickey 3.0.1 20170925
 ## 适用版本 python 2.7.x
+
+## 3.0.1 20170925
+    - 数据库模块依赖由MySQL-python更新为PyMySQL
+    - pymysql是MySQLdb模块更好的替代版,遵循数据库API 2.0规范,并同时支持python2和python3
 
 ## 3.0.0 20170702
     - 优化模块结构符合google python代码规范 更新daemon守护进程类为最新版本
