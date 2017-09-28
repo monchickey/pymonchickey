@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-import base64
 import random
 import hashlib
 
@@ -21,14 +20,6 @@ class DataCompute(object):
             if text[i:i+len(word)] == word:
                 num = num + 1
         return num
-
-    # 对字符串进行base64编码 图片读出来之后默认也是字符串
-    def base64_encode(self, str_data):
-        return base64.b64encode(str_data)
-
-    # base64解码为原始字符串
-    def base64_decode(self, base64_str):
-        return base64.b64decode(base64_str)
 
     # 随机生成指定位数的数字密码
     def create_random_number_password(self, number_digits):

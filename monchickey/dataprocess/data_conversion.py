@@ -1,14 +1,23 @@
 # -*- coding:utf-8 -*-
+
 import time
 import binascii
-
-# 数据转换类 包括数据类型转换,时间转换,json转换,字符串类型转换等
+import json
+import base64
 
 class DataConversion(object):
-    # 时间戳转时间字符串
-    # time_float 浮点数的时间戳
-    # time_format 格式化时间的格式 比如:'%Y-%m-%d %H:%M:%S'
+    """数据转换工具类
+    包括数据类型转换,时间转换,json转换,字符串类型转换,base64编解码等
+    """
+
     def time_to_str(self, time_float, time_format):
+        """时间戳转时间字符串
+        Args:
+            time_float: 浮点数类型的时间戳
+            time_format: 格式化时间的格式 如:'%Y-%m-%d %H:%M:%S'
+        Returns:
+            返回指定时间格式的字符串
+        """
         return time.strftime(time_format, time.localtime(time_float))
 
     # 时间字符串转时间戳
@@ -84,3 +93,35 @@ class DataConversion(object):
         # 首先转换整数为十六进制字符串
         hex_str = self.int_to_hex(integer_number)
         return self.hex_to_str(hex_str)
+
+    def json_parse(self, json_str):
+        """解析json字符串为内置字典(包括嵌套字典或列表)结构
+        Args:
+            json_str: json交换格式的字符串
+        Returns:
+            解析成功返回结果
+            解析异常返回None
+        """
+        try:
+            return json.loads(json_str)
+        except Exception as e:
+            return None
+
+    def convert_to_json(self, data):
+        """转换内置字典结构(包括嵌套字典或列表等数据结构)为json交换格式的字符串
+        Args:
+            data: 内置数据结构
+        Returns:
+            返回转换好的json字符串
+        """
+        return json.dumps(data, skipkeys=True)
+
+    def base64_encode(self, str_data):
+        """对字符串进行base64编码
+        方法二进制安全 比如图片读出来之后默认也是字符串
+        """
+        return base64.b64encode(str_data)
+
+    def base64_decode(self, base64_str):
+        """base64字符串解码为原始字符串"""
+        return base64.b64decode(base64_str)
