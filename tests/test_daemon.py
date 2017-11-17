@@ -3,7 +3,7 @@
 from monchickey import *
 import time
 import sys
-q = 5
+q = 15
 class DaemonTest:
     def test(self):
         print q

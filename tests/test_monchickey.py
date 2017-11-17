@@ -61,8 +61,6 @@ print bin_str
 str1 = dtc.bin_to_str(bin_str)
 print str1
 
-print dc.base64_encode("zzshs")
-print dc.base64_decode("enpzaHM=")
 # i = 109
 # s = dtc.int_to_hex(i)
 # print s
