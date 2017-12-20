@@ -1,45 +1,87 @@
 # -*- coding: utf-8 -*-
-import os, sys
+import os
+import sys
 import hashlib
 import binascii
 
-# 目录或文件读写操作工具类
 class FileIOUtils(object):
+    """目录或文件读写以及操作工具类
+    """
 
-    # 递归创建目录，创建成功返回true，已存在返回false
-    # 传入参数最好填写绝对路径
     def create_dirs(self, path):
-        if os.path.exists(path) == True:
+        """递归创建目录
+        Args:
+            path: 要创建的目录路径, 最好是写绝对路径
+        Returns:
+            返回类型: 布尔值
+            创建成功: True
+            目录已存在返回: False
+        """
+        if os.path.exists(path):
             return False
         else:
             os.makedirs(path)
             return True
-    # 读取文件所有内容 二进制安全
+
+    def delete_path(self, path):
+        """递归删除指定路径
+        同时适用于文件或目录, 如果是目录则删除目录及下面的所有文件
+        Args:
+            path: 要删除的路径
+        """
+        if os.path.isdir(path):
+            for deep_path in os.listdir(path):
+                # 递归调用删除方法
+                self.delete_path(os.path.join(path, deep_path))
+            if os.path.exists(path):
+                os.rmdir(path)
+        else:
+            if os.path.exists(path):
+                os.remove(path)
+
     def read_file(self, filename):
+        """读取文件所有内容并返回
+        二进制安全
+        """
         fp = open(filename, 'rb')
-        text_content = fp.read()
+        file_content = fp.read()
         fp.close()
-        return text_content
-    # 向文件中写入新的内容 覆盖原有所有的内容
-    def write_file(self, filename, text_content):
+        return file_content
+    
+    def write_file(self, filename, file_content):
+        """向文件中写入新的内容
+        会覆盖原有所有的内容, 二进制安全
+        """
         fp = open(filename, 'wb')
-        fp.write(text_content)
+        fp.write(file_content)
         fp.close()
 
-    # 向文件末尾指针追加内容
-    def add_file_content(self, filename, text_content):
+    def add_file_content(self, filename, file_content):
+        """从文件末尾指针开始追加内容
+        二进制安全
+        """
         fp = open(filename, "ab")
-        fp.write(text_content)
+        fp.write(file_content)
         fp.close()
 
-    # 获取指定目录下的文件列表 (只遍历一层，不是全遍历)
+
     def get_files(self, dir_path):
+        """获取指定目录下的文件列表
+        只遍历一层, 不是全遍历
+        """
         return os.listdir(dir_path)
 
-    # 读取文件内容为底层16进制字符串 二进制安全
-    # filename 文件uri
-    # offset_number 偏移量 默认是0读取全部 否则读取指定字节
+    
     def read_file_hex(self, filename, offset_number=0):
+        """读取文件内容为底层数据的16进制字符串形式,二进制安全
+        Args:
+            filename: 文件路径
+            offset_number: 偏移量
+                默认值为: 0  表示读取全部
+                否则读取指定个字节的内容
+        Returns:
+            返回读取内容的16进制字符串形式
+        """
         fp = open(filename, 'rb')
         fp.seek(0, 0)
         file_hex_result = ""
@@ -56,36 +98,60 @@ class FileIOUtils(object):
         fp.close()
         return file_hex_result
 
-    # 获取文件的md5 适用于大文件
+    
     def get_file_md5(self, filename):
+        """获取文件的md5值
+        同样适用于大文件
+        Args:
+            filename: 文件位置
+        Returns:
+            如果文件存在, 返回文件的md5值
+            如果文件不存在或路径不是文件, 返回None
+        """
         if not os.path.isfile(filename):
             return None
         md5_hash = hashlib.md5()
         fp = open(filename, 'rb')
         while True:
-            bytes = fp.read(4096)
-            if not bytes:
+            tmp_bytes = fp.read(4096)
+            if not tmp_bytes:
                 break
-            md5_hash.update(bytes)
+            md5_hash.update(tmp_bytes)
         fp.close()
         return md5_hash.hexdigest()
 
-    # 获取文件的sha1指纹 适用于大文件
+
     def get_file_sha1(self, filename):
+        """获取文件的sha1指纹
+        同样适用于大文件
+        Args:
+            filename: 文件位置
+        Returns:
+            如果文件存在, 返回文件的sha1值
+            如果文件不存在或路径不是文件, 返回None
+        """
         if not os.path.isfile(filename):
             return None
         sha1_hash = hashlib.sha1()
         fp = open(filename, 'rb')
         while True:
-            bytes = fp.read(4096)
-            if not bytes:
+            tmp_bytes = fp.read(4096)
+            if not tmp_bytes:
                 break
-            sha1_hash.update(bytes)
+            sha1_hash.update(tmp_bytes)
         fp.close()
         return sha1_hash.hexdigest()
 
-    # 这个方法是将文件全部加载到内存然后计算 所以不适用于大文件crc校验
+    
     def get_file_crc32(self, filename):
+        """获取文件的CRC32校验码
+        这里将文件全部加载到内存然后计算, 所以不适用于大文件
+        Args:
+            filename: 文件位置
+        Returns:
+            如果文件存在, 返回文件的CRC32值
+            如果文件不存在或路径不是文件, 返回None
+        """
         if not os.path.isfile(filename):
             return None
         fp = open(filename, 'rb')

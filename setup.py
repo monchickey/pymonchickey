@@ -14,7 +14,7 @@ Required packages:
 
 setup(
     name="monchickey",
-    version='3.1.1',
+    version='3.3.0',
     description="Commonly used tool library",
     long_description=longdesc,
     author="zengzhiying",
