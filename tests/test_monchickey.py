@@ -18,6 +18,17 @@ dc = DataCompute()
 # print dtc.str_to_time('2017-02-06 16:24:58', '%Y-%m-%d %H:%M:%S')
 # print wg.simple_get_url("https://www.baidu.com", 1)
 print dc.create_random_number_password(6)
+def f(x):
+    """待测试函数
+    """
+    y = x**3 + 2*x**2 + 6*x + 3
+    return y
+
+interval = (-2, 9)
+zero_value = dc.get_function_zero(f, interval, 0.00001)
+print(zero_value)
+if zero_value is not None:
+    print(f(zero_value))
 
 # file_io_utils = FileIOUtils()
 # print file_io_utils.get_file_crc32("C:\\Users\\Administrator\\Desktop\\get_file_md5.py")

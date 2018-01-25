@@ -54,3 +54,41 @@ class DataCompute(object):
             right_number = min(a[1], b[1])
             return left_number, right_number
         return None
+
+    def get_function_zero(self, func, interval, accuracy):
+        """计算函数的零点, 即一元方程f(x) = 0的近似解
+        依据和方法: 零点定理和二分法
+        Args: 
+            func: 函数本身, 类型: python函数, 可以直接被调用, 相当于f(x), 传入x返回函数值
+            interval: 零点所在区间, 类型: 元组 假设为: (3, 6) 则首先保证: f(3) * f(6) < 0
+            accuracy: 精度, 当区间范围缩小至|a - b| < accuracy时, 即返回求解结果
+        Returns:
+            计算成功返回方程f(x) = 0的一个解
+            计算未得到结果返回: None
+        """
+        a = interval[0]
+        b = interval[1]
+        ya = func(a)
+        yb = func(b)
+        if ya * yb > 0:
+            return None
+        if ya == 0:
+            return a
+        if yb == 0:
+            return b
+        num = 0
+        while True:
+            c = (a + b)/2.0
+            yc = func(c)
+            if yc == 0:
+                return c
+            elif ya * yc < 0:
+                b = c
+                yb = yc
+            elif yc * yb < 0:
+                a = c
+                ya = yc
+            num += 1
+            if abs(a - b) < accuracy:
+                # print('num: %d' % num)
+                return a

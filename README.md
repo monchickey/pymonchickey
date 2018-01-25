@@ -1,4 +1,4 @@
-# 基于 python2.7.x 的常用类库 monchickey 3.4.0 20180107
+# 基于 python2.7.x 的常用类库 monchickey 3.5.0 20180125
 
 ## 所需依赖
 ## 1. python-devel 安装:yum -y install python-devel或者rpm包安装
