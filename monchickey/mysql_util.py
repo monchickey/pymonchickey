@@ -1,9 +1,7 @@
 # coding=utf-8
-
 """对PyMySQL模块的简单封装
 PyMySQL模块同时支持py2和py3
 """
-
 import pymysql
 
 def get_connection(hostname, port, username, password, database, charset='utf8', query_dict=False):

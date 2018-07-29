@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-from monchickey import *
+from monchickey import Daemon
 import time
 import sys
 q = 15
