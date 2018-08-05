@@ -7,6 +7,8 @@ import json
 import random
 import hashlib
 
+import xxhash
+
 def text_word_count(text, word):
     """统计所给文本中指定某个单词的个数
     """
@@ -252,3 +254,16 @@ def base64_encode(str_data):
 def base64_decode(base64_str):
     """解码base64字符串为原始字符串"""
     return base64.b64decode(base64_str)
+
+def get_random_partition(row, size):
+    """用于集群场景下生成随机桶编号
+    用于随机分片存储, 图片存储等
+    Args:
+        row: 唯一记录值, 字符串类型, 一般是实时流中记录本身
+        size: 桶大小
+    Returns:
+        partition_id: 返回随机桶编号
+    """
+    partition_id = xxhash.xxh64(row).intdigest() % size
+    partition_id = int(partition_id) + 1
+    return partition_id

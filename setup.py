@@ -13,6 +13,7 @@ packages = ['monchickey']
 requires = [
     'PyMySQL>=0.7.11',
     'pyyaml>=3.11',
+    'xxhash>=1.2.0'
 ]
 
 longdesc = '''

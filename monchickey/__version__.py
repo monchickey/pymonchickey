@@ -1,8 +1,8 @@
 __title__ = 'monchickey'
 __description__ = 'Commonly used tool library'
 __url__ = 'https://github.com/zengzhiying/pymonchickey/'
-__version__ = '4.0.0'
-__build__ = 0x040000
+__version__ = '4.1.0'
+__build__ = 0x040100
 __author__ = 'zengzhiying'
 __author_email__ = 'yingzhi_zeng@126.com'
 __license__ = 'LGPL'
