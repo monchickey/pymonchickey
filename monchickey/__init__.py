@@ -5,7 +5,7 @@ from logging import NullHandler
 from .__version__ import *
 from .counter import Counter
 from .daemon import Daemon
-from ftp_util import FTPUtil
+from .ftp_util import FTPUtil
 
 __all__ = (
     'add_stderr_logger'
